@@ -1,3 +1,5 @@
+// File Path: src/components/EventHeader.jsx
+
 import { Title, Text, Box } from '@mantine/core';
 
 export function EventHeader({ title, description }) {
@@ -13,7 +15,7 @@ export function EventHeader({ title, description }) {
       </Title>
       <Text fz="xl" c="gray.7" mt="md">
         {description}
-      </Text>
+      </Typex>
       <Box w={100} h={4} bg="red.8" mx="auto" mt="xl" />
     </Box>
   );

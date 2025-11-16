@@ -1,3 +1,5 @@
+// File Path: src/components/EventDetails.jsx
+
 import { Paper, Title, SimpleGrid, Group, Text } from '@mantine/core';
 
 export function EventDetails({ dressCode, locationInfo }) {

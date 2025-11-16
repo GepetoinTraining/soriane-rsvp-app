@@ -1,3 +1,5 @@
+// File Path: src/components/ConceptualMenu.jsx
+
 import { Box, Title, SimpleGrid, Card, Image, Text } from '@mantine/core';
 
 export function ConceptualMenu({ menu }) {
