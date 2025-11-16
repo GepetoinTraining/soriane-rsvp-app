@@ -3,15 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "dotenv -e .env -- next dev",
+    "build": "dotenv -e .env -- prisma generate && dotenv -e .env -- next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "db:push": "dotenv -e .env -- prisma db push",
+    "db:studio": "dotenv -e .env -- prisma studio"
   },
   "dependencies": {
+    "@mantine/core": "^8.3.8",
+    "@mantine/dates": "^8.3.8",
+    "@mantine/form": "^8.3.8",
+    "@mantine/hooks": "^8.3.8",
+    "@neondatabase/serverless": "^1.0.2",
+    "@prisma/adapter-neon": "^6.19.0",
+    "@prisma/client": "^6.19.0",
+    "dayjs": "^1.11.19",
+    "dotenv-cli": "^11.0.0",
     "next": "16.0.3",
+    "prisma": "^6.19.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "babel-plugin-react-compiler": "1.0.0",

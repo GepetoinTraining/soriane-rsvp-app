@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"] // <-- ADD THIS LINE
+}
+
+datasource db {
+  provider = "postgresql" // Neon is a Postgres database
+  url      = env("DATABASE_URL") // This is read from your .env file
+  // adapter  = "@prisma/adapter-neon" // <-- REMOVE THIS INCORRECT LINE
+}
+
+// Model for the Event itself
+// The [id] in your URL will point to this
+model Event {
+  id              String   @id @default(cuid())
+  name            String   @db.Text
+  description     String?  @db.Text
+  dressCode       String?  @db.Text
+  locationInfo    String?  @db.Text
+  
+  // Stores the date *options* you want guests to choose from
+  // e.g., ["2025-11-27", "2025-11-28", "2025-12-04"]
+  availableDates  String[]
+
+  // Relation: An Event can have many RSVPs
+  rsvps           RSVP[]
+  
+  createdAt       DateTime @default(now())
+}
+
+// Model for the Guest's Response
+model RSVP {
+  id            String   @id @default(cuid())
+  
+  // Relation: The RSVP belongs to one Event
+  event         Event    @relation(fields: [eventId], references: [id])
+  eventId       String
+  
+  guestName     String   @db.Text
+  bringingGuest Boolean  @default(false)
+  plusOneName   String?  @db.Text
+  
+  // Stores the dates the guest *selected* from the Event's list
+  selectedDates String[]
+  
+  createdAt     DateTime @default(now())
+}
